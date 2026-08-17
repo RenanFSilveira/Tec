@@ -1,0 +1,1345 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monitoramento 24h para empresas e condomínios | TEC Segurança Eletrônica — Grupo Fibra</title>
+<meta name="description" content="Câmera registra o crime. A TEC impede. Central de monitoramento 24h, alarme, controle de acesso e unidade volante no local. Peça seu orçamento em 1 minuto. Grande Vitória e todo o Espírito Santo.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://monitoramento.tecseguranca.com/">
+<meta property="og:title" content="Monitoramento 24h para empresas e condomínios | TEC Segurança">
+<meta property="og:description" content="Quando o alarme dispara, alguém precisa ir até lá. Central 24h, confirmação por telefone e unidade volante no local. Orçamento sem compromisso.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!--
+  ============================================================================
+  LP MONITORAMENTO 24H · TEC Segurança Eletrônica (Grupo Fibra)
+  Destino do tráfego de Google Ads (busca). Captação para WhatsApp + CRM.
+
+  Estratégia: projeto-lp-tec.md · Publicação e campanha: spec-tecnica.md
+
+  ANTES DE PUBLICAR:
+   1. Preencher o bloco CFG no fim do arquivo (WhatsApp, webhook, IDs).
+   2. Resolver os marcadores [CONFIRMAR] no FAQ e no rodapé.
+   3. Trocar o wordmark SVG pelo arquivo de logo oficial (assets/logo-tec.png).
+   4. Substituir os placeholders de foto por imagens reais (central, viatura).
+  ============================================================================
+-->
+
+<style>
+  :root{
+    --noite:#08131F; --noite-2:#0D2135; --noite-3:#123048;
+    --azul:#1668C8; --azul-cl:#3B93F5; --ciano:#2FC6F0; --ciano-luz:#E9F7FD;
+    --ambar:#FF9F1C; --ambar-luz:#FFF4E3;
+    --tinta:#0C1A26; --cinza:#586E80; --cinza-cl:#8EA3B2;
+    --linha:#E4ECF2; --nevoa:#F5F9FC; --branco:#fff;
+    --zap:#25D366; --zap-esc:#128C4A;
+    --r:16px; --r-g:26px;
+    --s-s:0 2px 10px rgba(8,40,70,.05);
+    --s-m:0 12px 32px rgba(8,40,70,.09);
+    --s-g:0 26px 62px rgba(6,25,45,.16);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Manrope',system-ui,-apple-system,sans-serif;background:var(--branco);color:var(--tinta);
+    -webkit-font-smoothing:antialiased;line-height:1.6;font-size:16px;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 22px}
+  .txt-c{text-align:center}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+  /* revelação suave, escopada em .js: se o script falhar, tudo aparece igual */
+  .js .rev{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+  .js .rev.vis{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .js .rev{opacity:1;transform:none;transition:none}
+    *{animation:none!important}
+    html{scroll-behavior:auto}
+  }
+
+  svg.ic{width:20px;height:20px;flex:0 0 20px;fill:currentColor}
+
+  /* ---------- topo ---------- */
+  .topo{position:sticky;top:0;z-index:60;background:rgba(8,19,31,.86);backdrop-filter:blur(14px) saturate(1.4);
+    transition:box-shadow .3s,background .3s}
+  .topo.desceu{background:rgba(8,19,31,.97);box-shadow:0 8px 30px rgba(0,0,0,.25)}
+  .topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;height:70px}
+  .marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff}
+  .marca .sig{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
+    background:linear-gradient(140deg,var(--ciano),var(--azul));font-weight:800;font-size:.9rem;letter-spacing:-.02em;color:#04202F}
+  .marca span{display:flex;flex-direction:column;line-height:1.15}
+  .marca b{font-size:1rem;font-weight:800;letter-spacing:-.02em}
+  .marca small{font-size:.65rem;font-weight:600;color:#7FA6C0;letter-spacing:.06em;text-transform:uppercase}
+  .topo-acao{display:flex;align-items:center;gap:12px}
+  .tel-topo{display:none;font-size:.88rem;font-weight:700;color:#BFE4F6;text-decoration:none;white-space:nowrap}
+  .tel-topo:hover{color:#fff}
+  @media(min-width:820px){.tel-topo{display:flex;align-items:center;gap:7px}}
+
+  /* ---------- botões ---------- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:inherit;
+    font-size:.97rem;font-weight:700;cursor:pointer;border:0;border-radius:100px;
+    padding:16px 28px;text-decoration:none;line-height:1.2;text-align:center;position:relative;
+    transition:transform .22s cubic-bezier(.2,.7,.3,1),box-shadow .22s,background .22s}
+  .btn:active{transform:translateY(1px) scale(.99)}
+  .btn-ciano{background:linear-gradient(135deg,var(--ciano),var(--azul-cl));color:#04202F;box-shadow:0 10px 26px rgba(47,198,240,.3)}
+  .btn-ciano:hover{box-shadow:0 16px 38px rgba(47,198,240,.38);transform:translateY(-2px)}
+  .btn-zap{background:linear-gradient(135deg,#2EE070,#1FB855);color:#04231C;box-shadow:0 10px 26px rgba(31,184,85,.3)}
+  .btn-zap:hover{box-shadow:0 16px 36px rgba(31,184,85,.4);transform:translateY(-2px)}
+  .btn-azul{background:linear-gradient(135deg,var(--azul-cl),var(--azul));color:#fff;box-shadow:0 10px 26px rgba(22,104,200,.28)}
+  .btn-azul:hover{box-shadow:0 16px 38px rgba(22,104,200,.36);transform:translateY(-2px)}
+  .btn-azul:disabled{background:#E8EFF5;color:#A7B7C4;box-shadow:none;cursor:not-allowed;transform:none}
+  .btn-luz{background:rgba(255,255,255,.1);color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.26)}
+  .btn-luz:hover{background:rgba(255,255,255,.18);transform:translateY(-2px)}
+  .btn-sm{padding:11px 20px;font-size:.85rem}
+  .btn-larg{width:100%}
+  .btn-ciano.pulsa::after{content:"";position:absolute;inset:0;border-radius:100px;
+    box-shadow:0 0 0 0 rgba(47,198,240,.5);animation:pulso 2.8s infinite}
+  @keyframes pulso{70%{box-shadow:0 0 0 15px rgba(47,198,240,0)}100%{box-shadow:0 0 0 0 rgba(47,198,240,0)}}
+
+  /* ---------- herói ---------- */
+  .heroi{position:relative;color:#fff;padding:62px 0 118px;overflow:hidden;
+    background:linear-gradient(160deg,#061220 0%,#0B2138 52%,#123553 100%)}
+  .grade{position:absolute;inset:0;opacity:.5;pointer-events:none;
+    background-image:linear-gradient(rgba(47,198,240,.07) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(47,198,240,.07) 1px,transparent 1px);
+    background-size:52px 52px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 20%,transparent 75%);
+    -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 20%,transparent 75%)}
+  .blob{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none}
+  .blob-1{width:520px;height:520px;top:-190px;left:-150px;background:rgba(47,198,240,.22)}
+  .blob-2{width:600px;height:600px;top:-140px;right:-230px;background:rgba(22,104,200,.34)}
+  .heroi .wrap{position:relative;z-index:2}
+  .heroi-grid{display:grid;grid-template-columns:1fr;gap:36px;align-items:center}
+  @media(min-width:960px){.heroi-grid{grid-template-columns:1.06fr .94fr;gap:44px}}
+  .selo{display:inline-flex;align-items:center;gap:9px;font-size:.75rem;font-weight:700;
+    color:#BDEEFF;background:rgba(47,198,240,.12);border:1px solid rgba(47,198,240,.28);
+    border-radius:100px;padding:8px 16px 8px 10px;margin-bottom:22px}
+  .selo .pt{width:7px;height:7px;border-radius:50%;background:#4BE38C;box-shadow:0 0 0 4px rgba(75,227,140,.22);
+    animation:respira 2.4s ease-in-out infinite}
+  @keyframes respira{50%{box-shadow:0 0 0 9px rgba(75,227,140,0)}}
+  .heroi h1{font-size:2.1rem;font-weight:800;letter-spacing:-.032em;line-height:1.1;margin-bottom:16px}
+  .heroi h1 em{display:block;font-style:normal;background:linear-gradient(100deg,#7FE6FF,#BFF0FF);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .heroi .lead{font-size:1.05rem;color:#B9D2E4;max-width:530px;margin-bottom:28px}
+  .heroi .lead b{color:#fff;font-weight:700}
+  .heroi-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px}
+  .heroi-pe{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.83rem;color:#88A9BF}
+  .heroi-pe span{display:flex;align-items:center;gap:7px}
+  .heroi-pe svg{width:15px;height:15px;fill:#4BE38C;flex:0 0 15px}
+  @media(min-width:960px){.heroi{padding:76px 0 116px}.heroi h1{font-size:2.95rem}}
+
+  /* painel de central no herói */
+  .painel{position:relative;border-radius:var(--r-g);overflow:hidden;
+    background:linear-gradient(150deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
+    border:1px solid rgba(255,255,255,.14);box-shadow:var(--s-g);backdrop-filter:blur(8px);padding:20px}
+  .painel-topo{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+  .painel-topo b{font-size:.82rem;font-weight:800;color:#CFE6F4;letter-spacing:.04em;text-transform:uppercase}
+  .aovivo{display:flex;align-items:center;gap:7px;font-size:.7rem;font-weight:800;color:#4BE38C;
+    background:rgba(75,227,140,.12);border-radius:100px;padding:5px 11px}
+  .aovivo i{width:6px;height:6px;border-radius:50%;background:#4BE38C;animation:respira 2s infinite}
+  .cams{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+  .cam{position:relative;aspect-ratio:16/10;border-radius:12px;overflow:hidden;
+    background:linear-gradient(140deg,#12293F,#0A1B2B);border:1px solid rgba(255,255,255,.08)}
+  .cam::after{content:"";position:absolute;inset:0;
+    background:repeating-linear-gradient(180deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px)}
+  .cam svg{position:absolute;inset:0;margin:auto;width:32%;height:32%;fill:rgba(160,205,232,.22)}
+  .cam small{position:absolute;left:8px;bottom:6px;font-size:.6rem;font-weight:700;color:#8FB6D0;z-index:2;letter-spacing:.04em}
+  .cam .rec{position:absolute;right:8px;top:7px;width:7px;height:7px;border-radius:50%;background:#FF5C5C;z-index:2;
+    animation:respira 1.6s infinite;box-shadow:0 0 0 3px rgba(255,92,92,.2)}
+  .linhas{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .linhas li{display:flex;align-items:center;gap:11px;font-size:.83rem;color:#C3DAEA;
+    background:rgba(255,255,255,.05);border-radius:11px;padding:10px 13px;border:1px solid rgba(255,255,255,.06)}
+  .linhas li b{color:#fff;font-weight:700}
+  .linhas .hora{margin-left:auto;font-size:.7rem;font-weight:700;color:#7699B2;font-variant-numeric:tabular-nums}
+  .linhas .pin{width:26px;height:26px;flex:0 0 26px;border-radius:8px;display:grid;place-items:center}
+  .pin-am{background:rgba(255,159,28,.16);color:#FFBE5C}
+  .pin-cy{background:rgba(47,198,240,.14);color:#6FDCFA}
+  .pin-vd{background:rgba(75,227,140,.14);color:#5FE5A0}
+  .linhas .pin svg{width:14px;height:14px;fill:currentColor}
+
+  .onda{position:absolute;left:0;right:0;bottom:-1px;z-index:1;line-height:0}
+  .onda svg{width:100%;height:64px;display:block}
+  @media(min-width:760px){.onda svg{height:92px}}
+
+  /* ---------- faixa de confiança ---------- */
+  .confianca{padding:34px 0 6px}
+  .confianca ul{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:20px 16px}
+  @media(min-width:880px){.confianca ul{grid-template-columns:repeat(4,1fr);gap:24px}}
+  .confianca li{display:flex;gap:13px;align-items:flex-start}
+  .confianca .bolha{flex:0 0 40px;height:40px;border-radius:13px;display:grid;place-items:center;
+    background:linear-gradient(140deg,var(--ciano-luz),#D9F1FB);color:#1091BE}
+  .confianca .bolha svg{width:19px;height:19px;fill:currentColor}
+  .confianca b{display:block;font-size:.92rem;font-weight:700;line-height:1.35}
+  .confianca span{font-size:.81rem;color:var(--cinza);line-height:1.5;display:block}
+
+  /* ---------- seções ---------- */
+  section{padding:62px 0}
+  @media(min-width:880px){section{padding:88px 0}}
+  .nevoa{background:
+      radial-gradient(620px 320px at 88% 8%,rgba(47,198,240,.08),transparent 62%),
+      radial-gradient(560px 300px at 4% 92%,rgba(22,104,200,.06),transparent 60%),
+      var(--nevoa)}
+  .kicker{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;font-weight:800;
+    letter-spacing:.06em;text-transform:uppercase;color:#1091BE;background:var(--ciano-luz);
+    border-radius:100px;padding:7px 15px;margin-bottom:16px}
+  h2{font-size:1.8rem;font-weight:800;letter-spacing:-.03em;line-height:1.17;margin-bottom:14px}
+  h2 em{font-style:normal;background:linear-gradient(100deg,var(--azul),var(--ciano));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  @media(min-width:880px){h2{font-size:2.3rem}}
+  .sub{font-size:1.02rem;color:var(--cinza);max-width:640px;margin-bottom:38px}
+  .txt-c .sub{margin-left:auto;margin-right:auto}
+
+  /* ---------- comparativo ---------- */
+  .duelo{display:grid;grid-template-columns:1fr;gap:18px}
+  @media(min-width:880px){.duelo{grid-template-columns:1fr 1fr;gap:24px}}
+  .lado{border-radius:var(--r-g);padding:28px 24px;position:relative;overflow:hidden}
+  .lado-frio{background:#fff;border:1px solid var(--linha);box-shadow:var(--s-s)}
+  .lado-tec{background:linear-gradient(158deg,#0B2138,#123553);color:#fff;box-shadow:var(--s-g)}
+  .lado h3{font-size:1.12rem;font-weight:800;letter-spacing:-.02em;margin-bottom:5px}
+  .lado .cap{font-size:.79rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:20px}
+  .lado-frio .cap{color:var(--cinza-cl)}
+  .lado-tec .cap{color:#6FDCFA}
+  .passos{list-style:none;display:flex;flex-direction:column;gap:0}
+  .passos li{display:flex;gap:14px;padding:13px 0;font-size:.93rem;line-height:1.5}
+  .passos li + li{border-top:1px dashed rgba(120,150,175,.25)}
+  .lado-tec .passos li + li{border-top-color:rgba(255,255,255,.12)}
+  .passos .mk{flex:0 0 24px;height:24px;border-radius:8px;display:grid;place-items:center;margin-top:1px}
+  .passos .mk svg{width:13px;height:13px;fill:currentColor}
+  .lado-frio .mk{background:#FBEBEB;color:#D14B4B}
+  .lado-tec .mk{background:rgba(75,227,140,.16);color:#5FE5A0}
+  .lado-frio .passos li{color:var(--cinza)}
+  .lado-tec .passos li{color:#CFE2EE}
+  .lado-tec .passos b{color:#fff}
+  .fecho{margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);font-size:.95rem;color:#BFE4F6}
+  .lado-frio .fecho{border-top-color:var(--linha);color:var(--cinza)}
+  .fecho b{color:#fff;font-weight:800}
+  .lado-frio .fecho b{color:var(--tinta)}
+
+  /* ---------- como funciona ---------- */
+  .fluxo{display:grid;grid-template-columns:1fr;gap:16px;counter-reset:p}
+  @media(min-width:760px){.fluxo{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1000px){.fluxo{grid-template-columns:repeat(4,1fr);gap:18px}}
+  .etapa{background:#fff;border:1px solid var(--linha);border-radius:var(--r-g);padding:26px 22px;position:relative;
+    box-shadow:var(--s-s);transition:transform .25s,box-shadow .25s}
+  .etapa:hover{transform:translateY(-4px);box-shadow:var(--s-m)}
+  .etapa::before{counter-increment:p;content:counter(p);position:absolute;top:-14px;left:22px;
+    width:32px;height:32px;border-radius:11px;display:grid;place-items:center;font-size:.88rem;font-weight:800;color:#fff;
+    background:linear-gradient(140deg,var(--azul-cl),var(--azul));box-shadow:0 8px 18px rgba(22,104,200,.3)}
+  .etapa h4{font-size:1.02rem;font-weight:800;margin:16px 0 8px;letter-spacing:-.02em}
+  .etapa p{font-size:.9rem;color:var(--cinza);line-height:1.6}
+
+  /* ---------- cards de serviço ---------- */
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(min-width:760px){.cards{grid-template-columns:repeat(3,1fr);gap:18px}}
+  .card{background:#fff;border:1px solid var(--linha);border-radius:var(--r);padding:22px 20px;
+    transition:transform .25s,box-shadow .25s,border-color .25s}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--s-m);border-color:#CFE6F2}
+  .card .ib{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;margin-bottom:14px;
+    background:linear-gradient(140deg,var(--ciano-luz),#DCF2FB);color:#1091BE}
+  .card .ib svg{width:20px;height:20px;fill:currentColor}
+  .card b{display:block;font-size:.97rem;font-weight:800;margin-bottom:6px;letter-spacing:-.01em}
+  .card p{font-size:.85rem;color:var(--cinza);line-height:1.55}
+
+  /* ---------- para quem ---------- */
+  .publicos{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:760px){.publicos{grid-template-columns:repeat(2,1fr);gap:18px}}
+  .pub{display:flex;gap:16px;background:#fff;border:1px solid var(--linha);border-radius:var(--r-g);padding:24px 22px;
+    box-shadow:var(--s-s)}
+  .pub .ib{flex:0 0 46px;height:46px;border-radius:14px;display:grid;place-items:center;
+    background:linear-gradient(150deg,#0B2138,#1B4E76);color:#7FE6FF}
+  .pub .ib svg{width:21px;height:21px;fill:currentColor}
+  .pub b{display:block;font-size:1rem;font-weight:800;margin-bottom:6px}
+  .pub p{font-size:.88rem;color:var(--cinza);line-height:1.6}
+
+  /* ---------- migração ---------- */
+  .migra{background:linear-gradient(158deg,#0B2138,#16405F);color:#fff;border-radius:var(--r-g);
+    padding:38px 26px;position:relative;overflow:hidden;box-shadow:var(--s-g)}
+  @media(min-width:880px){.migra{padding:52px 48px}}
+  .migra .glow{position:absolute;width:460px;height:460px;border-radius:50%;filter:blur(90px);
+    background:rgba(47,198,240,.2);top:-200px;right:-140px;pointer-events:none}
+  .migra-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr;gap:26px;align-items:center}
+  @media(min-width:880px){.migra-grid{grid-template-columns:1.15fr .85fr;gap:44px}}
+  .migra h2{color:#fff;margin-bottom:12px}
+  .migra h2 em{background:linear-gradient(100deg,#7FE6FF,#BFF0FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .migra p{color:#B9D2E4;font-size:1rem;margin-bottom:22px}
+  .migra ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .migra li{display:flex;gap:12px;align-items:flex-start;font-size:.93rem;color:#CFE2EE;
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 16px}
+  .migra li svg{width:18px;height:18px;fill:#5FE5A0;flex:0 0 18px;margin-top:2px}
+
+  /* ---------- depoimentos ---------- */
+  .depos{display:grid;grid-template-columns:1fr;gap:16px}
+  @media(min-width:880px){.depos{grid-template-columns:repeat(3,1fr);gap:20px}}
+  .depo{background:#fff;border:1px solid var(--linha);border-radius:var(--r-g);padding:26px 24px;
+    display:flex;flex-direction:column;box-shadow:var(--s-s)}
+  .depo .aspas{font-size:2.6rem;line-height:.7;color:#BFE4F6;font-weight:800;margin-bottom:10px}
+  .depo p{font-size:.95rem;color:var(--tinta);line-height:1.62;flex:1}
+  .depo .quem{display:flex;align-items:center;gap:12px;margin-top:20px;padding-top:18px;border-top:1px solid var(--linha)}
+  .depo .av{width:40px;height:40px;flex:0 0 40px;border-radius:50%;display:grid;place-items:center;
+    background:linear-gradient(140deg,var(--azul-cl),var(--azul));color:#fff;font-weight:800;font-size:.9rem}
+  .depo .quem b{display:block;font-size:.9rem;font-weight:800}
+  .depo .quem small{font-size:.79rem;color:var(--cinza)}
+
+  /* ---------- simulador ---------- */
+  .sim{background:#fff;border-radius:var(--r-g);box-shadow:var(--s-g);border:1px solid var(--linha);
+    padding:28px 22px;max-width:660px;margin:0 auto}
+  @media(min-width:760px){.sim{padding:38px 40px}}
+  .trilha{display:flex;align-items:center;gap:8px;margin-bottom:26px}
+  .trilha .t{flex:1;display:flex;flex-direction:column;gap:7px}
+  .trilha .barra{height:5px;border-radius:100px;background:var(--linha);overflow:hidden}
+  .trilha .barra i{display:block;height:100%;width:0;border-radius:100px;
+    background:linear-gradient(90deg,var(--azul-cl),var(--ciano));transition:width .45s cubic-bezier(.2,.7,.3,1)}
+  .trilha .t.on .barra i,.trilha .t.ok .barra i{width:100%}
+  .trilha small{font-size:.7rem;font-weight:700;color:var(--cinza-cl);letter-spacing:.03em}
+  .trilha .t.on small,.trilha .t.ok small{color:var(--azul)}
+  .passo{display:none}
+  .passo.on{display:block;animation:entra .4s cubic-bezier(.2,.7,.3,1)}
+  @keyframes entra{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .passo h3{font-size:1.24rem;font-weight:800;letter-spacing:-.025em;margin-bottom:6px}
+  .passo .aj{font-size:.88rem;color:var(--cinza);margin-bottom:20px}
+  .ops{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:20px}
+  @media(min-width:560px){.ops.dois{grid-template-columns:1fr 1fr}}
+  .op{display:flex;align-items:center;gap:13px;width:100%;text-align:left;cursor:pointer;font-family:inherit;
+    background:#fff;border:1.5px solid var(--linha);border-radius:14px;padding:15px 16px;
+    transition:border-color .2s,background .2s,transform .2s}
+  .op:hover{border-color:#A8D8EC;transform:translateY(-1px)}
+  .op.sel{border-color:var(--azul);background:#F2F9FF;box-shadow:0 0 0 3px rgba(59,147,245,.12)}
+  .op .ib{flex:0 0 36px;height:36px;border-radius:11px;display:grid;place-items:center;
+    background:var(--ciano-luz);color:#1091BE}
+  .op .ib svg{width:17px;height:17px;fill:currentColor}
+  .op.sel .ib{background:var(--azul);color:#fff}
+  .op b{display:block;font-size:.93rem;font-weight:700;line-height:1.3}
+  .op small{display:block;font-size:.78rem;color:var(--cinza);line-height:1.4}
+  .campo{margin-bottom:14px}
+  .campo label{display:block;font-size:.82rem;font-weight:700;color:var(--tinta);margin-bottom:7px}
+  .campo input{width:100%;font-family:inherit;font-size:1rem;padding:14px 16px;border-radius:13px;
+    border:1.5px solid var(--linha);background:#fff;color:var(--tinta);transition:border-color .2s,box-shadow .2s}
+  .campo input:focus{outline:0;border-color:var(--azul);box-shadow:0 0 0 3px rgba(59,147,245,.13)}
+  .campo input::placeholder{color:var(--cinza-cl)}
+  .erro{display:none;font-size:.83rem;font-weight:600;color:#D14B4B;background:#FBEBEB;
+    border-radius:11px;padding:10px 13px;margin-bottom:14px}
+  .erro.on{display:block}
+  .acoes{display:flex;gap:10px;align-items:center}
+  .voltar{background:none;border:0;font-family:inherit;font-size:.88rem;font-weight:700;color:var(--cinza);
+    cursor:pointer;padding:12px 6px}
+  .voltar:hover{color:var(--azul)}
+  .zelo{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.78rem;color:var(--cinza-cl);margin-top:16px}
+  .zelo svg{width:14px;height:14px;fill:currentColor;flex:0 0 14px}
+
+  /* resultado */
+  .resultado{display:none}
+  .resultado.on{display:block;animation:entra .45s cubic-bezier(.2,.7,.3,1)}
+  .res-topo{display:flex;gap:14px;align-items:center;margin-bottom:20px}
+  .res-topo .ck{width:50px;height:50px;flex:0 0 50px;border-radius:16px;display:grid;place-items:center;
+    background:linear-gradient(140deg,#2EE070,#1FB855);color:#fff}
+  .res-topo .ck svg{width:24px;height:24px;fill:currentColor}
+  .res-topo b{display:block;font-size:1.2rem;font-weight:800;letter-spacing:-.02em}
+  .res-topo small{font-size:.87rem;color:var(--cinza)}
+  .resumo{background:var(--nevoa);border:1px solid var(--linha);border-radius:16px;padding:18px;margin-bottom:20px}
+  .resumo dl{display:grid;grid-template-columns:auto 1fr;gap:9px 16px;font-size:.89rem}
+  .resumo dt{color:var(--cinza);font-weight:600}
+  .resumo dd{font-weight:700;text-align:right}
+
+  /* ---------- FAQ ---------- */
+  .faq{max-width:780px;margin:0 auto}
+  .qa{border-bottom:1px solid var(--linha)}
+  .qa button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;
+    background:none;border:0;font-family:inherit;font-size:1rem;font-weight:700;color:var(--tinta);
+    text-align:left;cursor:pointer;padding:20px 0;letter-spacing:-.01em}
+  .qa button:hover{color:var(--azul)}
+  .qa .cr{flex:0 0 26px;height:26px;border-radius:9px;display:grid;place-items:center;background:var(--ciano-luz);
+    color:#1091BE;transition:transform .3s,background .3s}
+  .qa .cr svg{width:13px;height:13px;fill:currentColor}
+  .qa.ab .cr{transform:rotate(45deg);background:var(--azul);color:#fff}
+  .qa .rp{max-height:0;overflow:hidden;transition:max-height .38s cubic-bezier(.2,.7,.3,1)}
+  .qa .rp p{font-size:.94rem;color:var(--cinza);line-height:1.68;padding-bottom:20px;max-width:680px}
+
+  /* ---------- CTA final ---------- */
+  .final{background:linear-gradient(160deg,#061220 0%,#0B2138 55%,#123553 100%);color:#fff;position:relative;overflow:hidden}
+  .final .blob-3{width:560px;height:560px;top:-220px;left:50%;transform:translateX(-50%);
+    background:rgba(47,198,240,.18);filter:blur(100px);position:absolute;border-radius:50%}
+  .final .wrap{position:relative;z-index:2}
+  .final h2{color:#fff}
+  .final p{color:#B9D2E4;font-size:1.05rem;max-width:600px;margin:0 auto 30px}
+  .final-ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+
+  /* ---------- rodapé ---------- */
+  .rodape{background:#061220;color:#8EAEC4;padding:46px 0 30px;font-size:.88rem}
+  .rod-grid{display:grid;grid-template-columns:1fr;gap:28px;margin-bottom:28px}
+  @media(min-width:760px){.rod-grid{grid-template-columns:1.3fr 1fr 1fr}}
+  .rodape b{color:#fff;display:block;font-size:.92rem;margin-bottom:12px;font-weight:800}
+  .rodape a{color:#8EAEC4;text-decoration:none}
+  .rodape a:hover{color:#7FE6FF}
+  .rodape ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .rod-base{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;font-size:.79rem;color:#5C7C93;
+    display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
+
+  /* ---------- barra fixa mobile ---------- */
+  .fixa{position:fixed;left:0;right:0;bottom:0;z-index:80;padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.94);backdrop-filter:blur(14px);box-shadow:0 -6px 24px rgba(8,40,70,.12);
+    display:flex;gap:10px;transform:translateY(115%);transition:transform .35s cubic-bezier(.2,.7,.3,1)}
+  .fixa.on{transform:none}
+  .fixa .btn{flex:1;padding:14px 16px;font-size:.9rem}
+  @media(min-width:880px){.fixa{display:none}}
+  body{padding-bottom:0}
+  @media(max-width:879px){body.tem-fixa{padding-bottom:76px}}
+</style>
+</head>
+<body>
+
+<!-- ====================== TOPO ====================== -->
+<header class="topo" id="topo">
+  <div class="wrap">
+    <a class="marca" href="#topo" aria-label="TEC Segurança Eletrônica">
+      <!-- [CONFIRMAR] trocar pelo arquivo de logo oficial: <img src="assets/logo-tec.png" alt="TEC Segurança"> -->
+      <span class="sig">TEC</span>
+      <span>
+        <b>TEC Segurança</b>
+        <small>Grupo Fibra</small>
+      </span>
+    </a>
+    <div class="topo-acao">
+      <a class="tel-topo" href="tel:+552732131016">
+        <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:currentColor"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.24c1.1.37 2.3.57 3.6.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1l-2.2 2.23z"/></svg>
+        (27) 3213-1016
+      </a>
+      <button class="btn btn-ciano btn-sm" data-ir="#orcamento" data-origem="topo">Pedir orçamento</button>
+    </div>
+  </div>
+</header>
+
+<!-- ====================== HERÓI ====================== -->
+<div class="heroi">
+  <div class="grade"></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <div class="wrap">
+    <div class="heroi-grid">
+      <div>
+        <span class="selo"><i class="pt"></i> Central de monitoramento ativa agora</span>
+
+        <h1>Câmera registra o crime.<em>A TEC impede.</em></h1>
+
+        <p class="lead">
+          Sistema comum avisa você e para por aí. Aqui, quando o alarme dispara, nossa central confirma a
+          ocorrência, liga para o responsável e <b>envia uma unidade volante até o local</b>. Se não
+          conseguimos falar com você, mandamos apoio do mesmo jeito.
+        </p>
+
+        <div class="heroi-ctas">
+          <button class="btn btn-ciano pulsa" data-ir="#orcamento" data-origem="heroi">
+            Montar meu orçamento
+            <svg class="ic" viewBox="0 0 24 24"><path d="M13.3 5.3l6 6a1 1 0 010 1.4l-6 6-1.4-1.4 4.3-4.3H5v-2h11.2l-4.3-4.3z"/></svg>
+          </button>
+          <a class="btn btn-luz" href="#" data-zap data-origem="heroi_whatsapp">
+            <svg class="ic" viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.7 15l-1.3 5 5.1-1.3A10 10 0 1012 2zm5.5 14.2c-.2.7-1.2 1.3-2 1.4-.5.1-1.2.1-3.4-.8-2.8-1.2-4.6-4.1-4.8-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.2.4-.2.6-.1l2 .9c.2.1.4.2.4.3.1.2.1.7-.1 1.2z"/></svg>
+            Falar no WhatsApp
+          </a>
+        </div>
+
+        <div class="heroi-pe">
+          <span><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg> Atendimento 24h, todos os dias</span>
+          <span><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg> Grande Vitória e todo o ES</span>
+          <span><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg> Orçamento sem compromisso</span>
+        </div>
+      </div>
+
+      <!-- painel ilustrativo da central. Substituir por foto real da central assim que houver. -->
+      <div class="painel" aria-hidden="true">
+        <div class="painel-topo">
+          <b>Central TEC</b>
+          <span class="aovivo"><i></i> ao vivo</span>
+        </div>
+        <div class="cams">
+          <div class="cam"><span class="rec"></span><svg viewBox="0 0 24 24"><path d="M17 10.5V7a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1v-3.5l4 4v-11l-4 4z"/></svg><small>RECEPÇÃO</small></div>
+          <div class="cam"><span class="rec"></span><svg viewBox="0 0 24 24"><path d="M17 10.5V7a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1v-3.5l4 4v-11l-4 4z"/></svg><small>PÁTIO</small></div>
+          <div class="cam"><span class="rec"></span><svg viewBox="0 0 24 24"><path d="M17 10.5V7a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1v-3.5l4 4v-11l-4 4z"/></svg><small>DOCA</small></div>
+          <div class="cam"><span class="rec"></span><svg viewBox="0 0 24 24"><path d="M17 10.5V7a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1v-3.5l4 4v-11l-4 4z"/></svg><small>ESTOQUE</small></div>
+        </div>
+        <ul class="linhas">
+          <li>
+            <span class="pin pin-am"><svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"/></svg></span>
+            <span><b>Sensor acionado</b> · setor doca</span>
+            <span class="hora">00:00</span>
+          </li>
+          <li>
+            <span class="pin pin-cy"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.24c1.1.37 2.3.57 3.6.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1l-2.2 2.23z"/></svg></span>
+            <span><b>Central liga</b> para o responsável</span>
+            <span class="hora">00:12</span>
+          </li>
+          <li>
+            <span class="pin pin-vd"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6a5 5 0 00-10 0v2H6a2 2 0 00-2 2v9a2 2 0 002 2h12a2 2 0 002-2v-9a2 2 0 00-2-2zM9 6a3 3 0 016 0v2H9V6z"/></svg></span>
+            <span><b>Unidade volante</b> a caminho</span>
+            <span class="hora">00:40</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="onda">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path fill="#ffffff" d="M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,100L0,100Z"></path></svg>
+  </div>
+</div>
+
+<!-- ====================== FAIXA DE CONFIANÇA ====================== -->
+<div class="confianca">
+  <div class="wrap">
+    <ul>
+      <li class="rev">
+        <span class="bolha"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 10.6V6h-2v7.4l5 3 1-1.7-4-2.1z"/></svg></span>
+        <span><b>Central própria 24h</b><span>Monitoramento todos os dias, inclusive feriado e madrugada</span></span>
+      </li>
+      <li class="rev">
+        <span class="bolha"><svg viewBox="0 0 24 24"><path d="M18.9 6.5A2 2 0 0017 5h-9L6.6 2H2v2h3.3l3.2 7.2-1.2 2.2A2 2 0 009 16h11v-2H9.4l.8-1.5h7A2 2 0 0019 11.4l1.5-4.2-1.6-.7zM8 18a2 2 0 100 4 2 2 0 000-4zm10 0a2 2 0 100 4 2 2 0 000-4z"/></svg></span>
+        <span><b>Unidade volante</b><span>Alarme disparou, alguém vai até o local conferir</span></span>
+      </li>
+      <li class="rev">
+        <span class="bolha"><svg viewBox="0 0 24 24"><path d="M17 1H7a2 2 0 00-2 2v18a2 2 0 002 2h10a2 2 0 002-2V3a2 2 0 00-2-2zm0 18H7V5h10v14z"/></svg></span>
+        <span><b>Tudo no seu celular</b><span>Imagem ao vivo, gravações e o sistema na palma da mão</span></span>
+      </li>
+      <li class="rev">
+        <span class="bolha"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg></span>
+        <span><b>Grupo Fibra</b><span>Segurança privada no Espírito Santo desde 1995</span></span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- ====================== O COMPARATIVO ====================== -->
+<section>
+  <div class="wrap">
+    <div class="txt-c">
+      <span class="kicker">O que muda na prática</span>
+      <h2>São <em>três da manhã</em> e o alarme disparou.<br>O que acontece depois?</h2>
+      <p class="sub">
+        É essa a diferença entre um sistema que registra e um sistema que protege. Compare o que costuma
+        acontecer com um kit comum e o que acontece quando a TEC monitora.
+      </p>
+    </div>
+
+    <div class="duelo">
+      <div class="lado lado-frio rev">
+        <span class="cap">Sistema comum</span>
+        <h3>Você é avisado. E só.</h3>
+        <ul class="passos">
+          <li><span class="mk"><svg viewBox="0 0 24 24"><path d="M19 6.4L17.6 5 12 10.6 6.4 5 5 6.4l5.6 5.6L5 17.6 6.4 19l5.6-5.6 5.6 5.6 1.4-1.4-5.6-5.6z"/></svg></span><span>O celular apita no meio da noite, se estiver com som e com internet.</span></li>
+          <li><span class="mk"><svg viewBox="0 0 24 24"><path d="M19 6.4L17.6 5 12 10.6 6.4 5 5 6.4l5.6 5.6L5 17.6 6.4 19l5.6-5.6 5.6 5.6 1.4-1.4-5.6-5.6z"/></svg></span><span>Você abre o app sonolento e tenta entender uma imagem escura.</span></li>
+          <li><span class="mk"><svg viewBox="0 0 24 24"><path d="M19 6.4L17.6 5 12 10.6 6.4 5 5 6.4l5.6 5.6L5 17.6 6.4 19l5.6-5.6 5.6 5.6 1.4-1.4-5.6-5.6z"/></svg></span><span>Na dúvida, resta ligar para alguém ou ir você mesmo até o local.</span></li>
+          <li><span class="mk"><svg viewBox="0 0 24 24"><path d="M19 6.4L17.6 5 12 10.6 6.4 5 5 6.4l5.6 5.6L5 17.6 6.4 19l5.6-5.6 5.6 5.6 1.4-1.4-5.6-5.6z"/></svg></span><span>De manhã, a gravação mostra em detalhe o prejuízo que já aconteceu.</span></li>
+        </ul>
+        <p class="fecho">No fim, o equipamento fez o trabalho dele: <b>registrou</b>.</p>
+      </div>
+
+      <div class="lado lado-tec rev">
+        <span class="cap">Com a TEC monitorando</span>
+        <h3>Alguém está acordado por você.</h3>
+        <ul class="passos">
+          <li><span class="mk"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span>O disparo cai na <b>nossa central</b>, que está de plantão nesse exato momento.</span></li>
+          <li><span class="mk"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span>Um operador <b>verifica as imagens</b> e liga para você confirmar a ocorrência.</span></li>
+          <li><span class="mk"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span>Se você não atende, <b>a unidade volante sai assim mesmo</b>. Não arriscamos.</span></li>
+          <li><span class="mk"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span>Você acorda com o problema <b>resolvido e relatado</b>, não com o prejuízo.</span></li>
+        </ul>
+        <p class="fecho">É por isso que o nosso trabalho não termina no equipamento: <b>ele começa nele</b>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== COMO FUNCIONA ====================== -->
+<section class="nevoa">
+  <div class="wrap">
+    <div class="txt-c">
+      <span class="kicker">Do primeiro contato à proteção</span>
+      <h2>Quatro passos e <em>pronto</em></h2>
+      <p class="sub">Nenhuma etapa sobra para você. Da visita técnica ao suporte, quem opera somos nós.</p>
+    </div>
+
+    <div class="fluxo">
+      <div class="etapa rev">
+        <h4>Visita e projeto</h4>
+        <p>Um técnico vai até o seu endereço, entende a rotina do lugar e desenha onde cada equipamento precisa ficar. Projeto sob medida, não pacote de prateleira.</p>
+      </div>
+      <div class="etapa rev">
+        <h4>Instalação</h4>
+        <p>Nossa equipe instala tudo, testa ponto a ponto e treina você e quem mais precisar usar o sistema no dia a dia.</p>
+      </div>
+      <div class="etapa rev">
+        <h4>Monitoramento 24h</h4>
+        <p>A partir daí a central acompanha o sistema 24 horas por dia, 7 dias por semana. Você vê tudo pelo aplicativo quando quiser.</p>
+      </div>
+      <div class="etapa rev">
+        <h4>Resposta na hora</h4>
+        <p>Disparou, a central confirma e aciona a unidade volante. Qualquer dúvida no meio do caminho, o suporte atende 24h.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== O QUE ENTRA NO SISTEMA ====================== -->
+<section>
+  <div class="wrap">
+    <div class="txt-c">
+      <span class="kicker">Soluções TEC</span>
+      <h2>O que pode entrar no <em>seu sistema</em></h2>
+      <p class="sub">Você não precisa de tudo. Precisa do que faz sentido para o seu espaço, e é isso que o projeto define.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card rev">
+        <span class="ib"><svg viewBox="0 0 24 24"><path d="M17 10.5V7a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1v-3.5l4 4v-11l-4 4z"/></svg></span>
+        <b>Câmeras e CFTV</b>
+        <p>Câmeras internas e externas em pontos estratégicos, com visão completa da área em tempo real.</p>
+      </div>
+      <div class="card rev">
+        <span class="ib"><svg viewBox="0 0 24 24"><path d="M12 22a2 2 0 002-2h-4a2 2 0 002 2zm6-6v-5a6 6 0 00-5-5.9V4a1 1 0 10-2 0v1.1A6 6 0 006 11v5l-2 2v1h16v-1l-2-2z"/></svg></span>
+        <b>Alarme monitorado</b>
+        <p>Em caso de invasão, o alarme dispara e a central é avisada no mesmo instante. A ajuda já sai.</p>
+      </div>
+      <div class="card rev">
+        <span class="ib"><svg viewBox="0 0 24 24"><path d="M3 5h2v14H3V5zm16 0h2v14h-2V5zM7 11h10v2H7v-2z"/></svg></span>
+        <b>Sensor de barreira</b>
+        <p>Detecta a passagem de pessoas e veículos em perímetro, cerca e acesso de carga.</p>
+      </div>
+      <div class="card rev">
+        <span class="ib"><svg viewBox="0 0 24 24"><path d="M13 2L4.1 12.6a1 1 0 00.8 1.6H11l-1.9 7.6a.5.5 0 00.9.4L19.9 11a1 1 0 00-.8-1.6H13l1.9-6.8a.5.5 0 00-.9-.4z"/></svg></span>
+        <b>Cerca elétrica</b>
+        <p>Barreira dissuasiva no muro, integrada ao alarme e ao monitoramento da central.</p>
+      </div>
+      <div class="card rev">
+        <span class="ib"><svg viewBox="0 0 24 24"><path d="M2 7h20v2H2V7zm0 4h20v2H2v-2zm0 4h20v2H2v-2z"/></svg></span>
+        <b>Concertina</b>
+        <p>Barreira física de alta visibilidade, que desestimula a tentativa antes dela começar.</p>
+      </div>
+      <div class="card rev">
+        <span class="ib"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6a5 5 0 00-10 0v2H6a2 2 0 00-2 2v9a2 2 0 002 2h12a2 2 0 002-2v-9a2 2 0 00-2-2zM9 6a3 3 0 016 0v2H9V6zm3 12a2 2 0 110-4 2 2 0 010 4z"/></svg></span>
+        <b>Controle de acesso</b>
+        <p>Quem entra, quem sai e a que horas. Registro de acesso por pessoa, com histórico.</p>
+      </div>
+      <div class="card rev">
+        <span class="ib"><svg viewBox="0 0 24 24"><path d="M12 3L2 9v12h7v-7h6v7h7V9L12 3z"/></svg></span>
+        <b>Portaria remota</b>
+        <p>Portaria operada à distância por profissionais de segurança, com custo bem abaixo da portaria presencial.</p>
+      </div>
+      <div class="card rev">
+        <span class="ib"><svg viewBox="0 0 24 24"><path d="M12 4a8 8 0 100 16 8 8 0 000-16zm0 14a6 6 0 110-12 6 6 0 010 12zm1-9h-2v4l3.5 2 1-1.7-2.5-1.4V9z"/></svg></span>
+        <b>Ronda on-line</b>
+        <p>Verificação programada das imagens em horários combinados, sem esperar o alarme tocar.</p>
+      </div>
+      <div class="card rev">
+        <span class="ib"><svg viewBox="0 0 24 24"><path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h10v2H4v-2z"/></svg></span>
+        <b>Monitoramento por fibra ótica</b>
+        <p>Link dedicado para operações que não podem depender da estabilidade da internet comum.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== PARA QUEM ====================== -->
+<section class="nevoa">
+  <div class="wrap">
+    <div class="txt-c">
+      <span class="kicker">Para quem a TEC protege</span>
+      <h2>Cada operação tem um <em>ponto fraco diferente</em></h2>
+      <p class="sub">O projeto muda conforme o que você tem a perder e por onde alguém entraria.</p>
+    </div>
+
+    <div class="publicos">
+      <div class="pub rev">
+        <span class="ib"><svg viewBox="0 0 24 24"><path d="M3 21V7l7-4 7 4v14h-5v-6H8v6H3zm16 0V9l2 1.2V21h-2z"/></svg></span>
+        <span>
+          <b>Empresas e comércio</b>
+          <p>Loja, escritório, farmácia, posto, clínica. Estoque, caixa e movimentação de pessoas em um só sistema, com registro de quem abriu e fechou.</p>
+        </span>
+      </div>
+      <div class="pub rev">
+        <span class="ib"><svg viewBox="0 0 24 24"><path d="M4 21V3h10v6h6v12H4zm4-4h4v-2H8v2zm0-4h4v-2H8v2zm0-4h4V7H8v2zm8 8h2v-2h-2v2zm0-4h2v-2h-2v2z"/></svg></span>
+        <span>
+          <b>Condomínios</b>
+          <p>Controle de acesso de moradores, visitantes e prestadores, com portaria remota como alternativa real ao custo de portaria presencial.</p>
+        </span>
+      </div>
+      <div class="pub rev">
+        <span class="ib"><svg viewBox="0 0 24 24"><path d="M2 20h20v2H2v-2zm2-2V9l6 3V9l6 3V4h4v14H4z"/></svg></span>
+        <span>
+          <b>Indústrias e galpões</b>
+          <p>Perímetro extenso, doca de carga e turno noturno. Sensor de barreira e ronda on-line onde câmera sozinha não dá conta.</p>
+        </span>
+      </div>
+      <div class="pub rev">
+        <span class="ib"><svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-5h2v5h6v-8h3L12 3z"/></svg></span>
+        <span>
+          <b>Residências</b>
+          <p>Para dormir tranquilo. A presença das câmeras já afasta quem passa avaliando a casa, e o resto a central resolve.</p>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== MIGRAÇÃO ====================== -->
+<section>
+  <div class="wrap">
+    <div class="migra rev">
+      <div class="glow"></div>
+      <div class="migra-grid">
+        <div>
+          <span class="kicker" style="background:rgba(47,198,240,.14);color:#7FE6FF">Já tem câmera instalada?</span>
+          <h2>Você não precisa <em>jogar fora</em> o que já comprou</h2>
+          <p>
+            Muita gente já investiu em câmeras e descobriu depois que ninguém está do outro lado olhando.
+            Nesses casos, dá para aproveitar boa parte do equipamento que já está no lugar e ligar tudo
+            à central da TEC, com custo de entrada bem menor do que começar do zero.
+          </p>
+          <button class="btn btn-ciano" data-ir="#orcamento" data-origem="migracao">Quero avaliar minha migração</button>
+        </div>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg><span>Avaliação técnica do que já está instalado, sem custo</span></li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg><span>Aproveitamento das câmeras compatíveis, reduzindo a instalação</span></li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg><span>Você passa a ter central 24h e unidade volante no mesmo sistema</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== DEPOIMENTOS ====================== -->
+<section class="nevoa">
+  <div class="wrap">
+    <div class="txt-c">
+      <span class="kicker">Quem já confia</span>
+      <h2>Empresas capixabas que <em>escolheram a TEC</em></h2>
+      <p class="sub">Depoimentos de clientes publicados pela própria TEC Segurança.</p>
+    </div>
+
+    <div class="depos">
+      <div class="depo rev">
+        <span class="aspas">&ldquo;</span>
+        <p>Fizemos um BID criterioso para contratarmos uma empresa de segurança eletrônica para o Darwin, onde a TEC Segurança Eletrônica foi a vencedora. Temos convicção que acertamos em nossa contratação.</p>
+        <span class="quem"><span class="av">JH</span><span><b>Jociel Hemerly</b><small>Empresário · Grupo Darwin</small></span></span>
+      </div>
+      <div class="depo rev">
+        <span class="aspas">&ldquo;</span>
+        <p>Temos produtos de grande valor dentro das Farmácias Alquimia, porém confiamos plenamente nos serviços prestados pela TEC.</p>
+        <span class="quem"><span class="av">JC</span><span><b>Julio Campagnaro</b><small>Empresário · Rede de Farmácias Alquimia</small></span></span>
+      </div>
+      <div class="depo rev">
+        <span class="aspas">&ldquo;</span>
+        <p>Só temos elogios a fazer a esta empresa. Serviços de qualidade, conhecimento técnico e ótimo atendimento. Todos os envolvidos na gestão de segurança do Posto Iate estão satisfeitos.</p>
+        <span class="quem"><span class="av">AB</span><span><b>Anderson Basílio</b><small>Empresário · Posto Iate</small></span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== SIMULADOR / FORMULÁRIO ====================== -->
+<section id="orcamento">
+  <div class="wrap">
+    <div class="txt-c">
+      <span class="kicker">Leva menos de 1 minuto</span>
+      <h2>Monte o seu orçamento <em>sem compromisso</em></h2>
+      <p class="sub">
+        Três perguntas rápidas para entendermos o que o seu espaço precisa. No fim, você fala direto com
+        um consultor da TEC, já com tudo anotado.
+      </p>
+    </div>
+
+    <div class="sim" id="sim">
+      <div class="trilha" id="trilha">
+        <span class="t on"><span class="barra"><i></i></span><small>Seu espaço</small></span>
+        <span class="t"><span class="barra"><i></i></span><small>Sua situação</small></span>
+        <span class="t"><span class="barra"><i></i></span><small>Seu contato</small></span>
+      </div>
+
+      <!-- passo 1 -->
+      <div class="passo on" id="p1">
+        <h3>O sistema é para qual tipo de espaço?</h3>
+        <p class="aj">É o que define o tipo de projeto e quem da equipe vai falar com você.</p>
+        <div class="ops dois" id="opPerfil">
+          <button class="op" type="button" data-valor="Empresa ou comércio">
+            <span class="ib"><svg viewBox="0 0 24 24"><path d="M3 21V7l7-4 7 4v14h-5v-6H8v6H3z"/></svg></span>
+            <span><b>Empresa ou comércio</b><small>Loja, escritório, clínica, posto</small></span>
+          </button>
+          <button class="op" type="button" data-valor="Condomínio">
+            <span class="ib"><svg viewBox="0 0 24 24"><path d="M4 21V3h10v6h6v12H4zm4-4h4v-2H8v2zm0-4h4v-2H8v2z"/></svg></span>
+            <span><b>Condomínio</b><small>Residencial ou comercial</small></span>
+          </button>
+          <button class="op" type="button" data-valor="Indústria ou galpão">
+            <span class="ib"><svg viewBox="0 0 24 24"><path d="M2 20h20v2H2v-2zm2-2V9l6 3V9l6 3V4h4v14H4z"/></svg></span>
+            <span><b>Indústria ou galpão</b><small>Área extensa, doca, pátio</small></span>
+          </button>
+          <button class="op" type="button" data-valor="Residência">
+            <span class="ib"><svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-5h2v5h6v-8h3L12 3z"/></svg></span>
+            <span><b>Residência</b><small>Casa ou apartamento</small></span>
+          </button>
+        </div>
+        <div class="erro" id="erro1">Escolha uma das opções para continuar.</div>
+        <button class="btn btn-azul btn-larg" id="btnP1" disabled>Continuar</button>
+      </div>
+
+      <!-- passo 2 -->
+      <div class="passo" id="p2">
+        <h3>Como está a segurança do local hoje?</h3>
+        <p class="aj">Se já existe equipamento instalado, a conversa muda bastante.</p>
+        <div class="ops" id="opSituacao">
+          <button class="op" type="button" data-valor="Não tem nada instalado">
+            <span class="ib"><svg viewBox="0 0 24 24"><path d="M12 2L4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3z"/></svg></span>
+            <span><b>Não tenho nada instalado</b><small>Quero começar do zero</small></span>
+          </button>
+          <button class="op" type="button" data-valor="Tem sistema e quer trocar">
+            <span class="ib"><svg viewBox="0 0 24 24"><path d="M12 6V3L8 7l4 4V8a4 4 0 11-4 4H6a6 6 0 106-6z"/></svg></span>
+            <span><b>Tenho, mas quero trocar de empresa</b><small>Não estou satisfeito com quem atende hoje</small></span>
+          </button>
+          <button class="op" type="button" data-valor="Tem sistema e quer ampliar">
+            <span class="ib"><svg viewBox="0 0 24 24"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5z"/></svg></span>
+            <span><b>Tenho, mas quero ampliar</b><small>Faltam pontos ou faltou monitoramento</small></span>
+          </button>
+        </div>
+
+        <p class="aj" style="margin-bottom:12px;font-weight:700;color:var(--tinta)">E o que você tem em mente?</p>
+        <div class="ops dois" id="opInteresse">
+          <button class="op" type="button" data-valor="Câmeras e monitoramento">
+            <span class="ib"><svg viewBox="0 0 24 24"><path d="M17 10.5V7a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1v-3.5l4 4v-11l-4 4z"/></svg></span>
+            <span><b>Câmeras e monitoramento</b></span>
+          </button>
+          <button class="op" type="button" data-valor="Alarme">
+            <span class="ib"><svg viewBox="0 0 24 24"><path d="M12 22a2 2 0 002-2h-4a2 2 0 002 2zm6-6v-5a6 6 0 00-5-5.9V4a1 1 0 10-2 0v1.1A6 6 0 006 11v5l-2 2v1h16v-1l-2-2z"/></svg></span>
+            <span><b>Alarme monitorado</b></span>
+          </button>
+          <button class="op" type="button" data-valor="Controle de acesso">
+            <span class="ib"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6a5 5 0 00-10 0v2H6a2 2 0 00-2 2v9a2 2 0 002 2h12a2 2 0 002-2v-9a2 2 0 00-2-2zM9 6a3 3 0 016 0v2H9V6z"/></svg></span>
+            <span><b>Controle de acesso</b></span>
+          </button>
+          <button class="op" type="button" data-valor="Portaria remota">
+            <span class="ib"><svg viewBox="0 0 24 24"><path d="M12 3L2 9v12h7v-7h6v7h7V9L12 3z"/></svg></span>
+            <span><b>Portaria remota</b></span>
+          </button>
+          <button class="op" type="button" data-valor="Ainda não sei">
+            <span class="ib"><svg viewBox="0 0 24 24"><path d="M11 18h2v-2h-2v2zm1-16a5 5 0 00-5 5h2a3 3 0 116 0c0 3-3 2.6-3 7h2c0-3.1 3-3.4 3-7a5 5 0 00-5-5z"/></svg></span>
+            <span><b>Ainda não sei, quero orientação</b></span>
+          </button>
+        </div>
+
+        <div class="erro" id="erro2">Escolha como está a segurança hoje para continuar.</div>
+        <div class="acoes">
+          <button class="voltar" data-voltar="1">Voltar</button>
+          <button class="btn btn-azul" style="flex:1" id="btnP2" disabled>Continuar</button>
+        </div>
+      </div>
+
+      <!-- passo 3 -->
+      <div class="passo" id="p3">
+        <h3>Para onde enviamos o orçamento?</h3>
+        <p class="aj">Um consultor da TEC entra em contato para agendar a visita técnica.</p>
+        <div class="campo">
+          <label for="inNome">Seu nome</label>
+          <input id="inNome" type="text" autocomplete="name" placeholder="Como podemos te chamar">
+        </div>
+        <div class="campo">
+          <label for="inFone">WhatsApp</label>
+          <input id="inFone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(27) 99999-9999">
+        </div>
+        <div class="campo">
+          <label for="inCidade">Cidade do imóvel</label>
+          <input id="inCidade" type="text" placeholder="Vitória, Serra, Vila Velha...">
+        </div>
+        <div class="erro" id="erro3">Preencha nome, WhatsApp e cidade para continuar.</div>
+        <div class="acoes">
+          <button class="voltar" data-voltar="2">Voltar</button>
+          <button class="btn btn-zap" style="flex:1" id="btnEnviar">
+            <svg class="ic" viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.7 15l-1.3 5 5.1-1.3A10 10 0 1012 2zm5.5 14.2c-.2.7-1.2 1.3-2 1.4-.5.1-1.2.1-3.4-.8-2.8-1.2-4.6-4.1-4.8-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.2.4-.2.6-.1l2 .9c.2.1.4.2.4.3.1.2.1.7-.1 1.2z"/></svg>
+            Pedir meu orçamento
+          </button>
+        </div>
+        <p class="zelo">
+          <svg viewBox="0 0 24 24"><path d="M18 8h-1V6a5 5 0 00-10 0v2H6a2 2 0 00-2 2v9a2 2 0 002 2h12a2 2 0 002-2v-9a2 2 0 00-2-2zM9 6a3 3 0 016 0v2H9V6z"/></svg>
+          Seus dados ficam com a TEC. Sem disparo em massa, sem repasse a terceiros.
+        </p>
+      </div>
+
+      <!-- resultado -->
+      <div class="resultado" id="resultado">
+        <div class="res-topo">
+          <span class="ck"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>
+          <span>
+            <b id="resTitulo">Pedido registrado</b>
+            <small>Abrimos o WhatsApp com o seu resumo. Se a janela não abriu, use o botão abaixo.</small>
+          </span>
+        </div>
+        <div class="resumo">
+          <dl>
+            <dt>Espaço</dt><dd id="resPerfil">&mdash;</dd>
+            <dt>Situação</dt><dd id="resSituacao">&mdash;</dd>
+            <dt>Interesse</dt><dd id="resInteresse">&mdash;</dd>
+            <dt>Cidade</dt><dd id="resCidade">&mdash;</dd>
+          </dl>
+        </div>
+        <a class="btn btn-zap btn-larg" href="#" data-zap data-origem="resultado">Reabrir o WhatsApp com meu resumo</a>
+        <p class="zelo">Prefere ligar? <a href="tel:+552732131016" style="color:var(--azul);font-weight:700;text-decoration:none">(27) 3213-1016</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== FAQ ====================== -->
+<section class="nevoa">
+  <div class="wrap">
+    <div class="txt-c">
+      <span class="kicker">Perguntas frequentes</span>
+      <h2>O que costumam <em>perguntar antes</em></h2>
+    </div>
+
+    <div class="faq">
+      <div class="qa">
+        <button type="button">Quanto custa?<span class="cr"><svg viewBox="0 0 24 24"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5z"/></svg></span></button>
+        <div class="rp"><p>Depende do tamanho do espaço, de quantos pontos precisam ser cobertos e de quais soluções entram no projeto. É por isso que fazemos a visita técnica antes: o orçamento sai em cima do que o seu lugar realmente precisa, e não de um pacote fechado. A visita e o orçamento são sem compromisso.</p></div>
+      </div>
+      <div class="qa">
+        <button type="button">Já tenho câmeras instaladas. Preciso trocar tudo?<span class="cr"><svg viewBox="0 0 24 24"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5z"/></svg></span></button>
+        <div class="rp"><p>Na maioria dos casos, não. Boa parte dos equipamentos já instalados é compatível e pode ser aproveitada quando você migra para a TEC, o que reduz bastante o custo de entrada. O técnico avalia o que existe na visita e diz com clareza o que aproveita e o que precisa ser trocado.</p></div>
+      </div>
+      <div class="qa">
+        <button type="button">Vocês atendem a minha cidade?<span class="cr"><svg viewBox="0 0 24 24"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5z"/></svg></span></button>
+        <div class="rp"><p>A TEC atende o Espírito Santo, com base em Vitória e operação concentrada na Grande Vitória. Informe a cidade do imóvel no formulário e confirmamos na hora a cobertura de monitoramento e de unidade volante para o seu endereço. <!-- [CONFIRMAR] raio real de atendimento da unidade volante --></p></div>
+      </div>
+      <div class="qa">
+        <button type="button">O que acontece quando o alarme dispara?<span class="cr"><svg viewBox="0 0 24 24"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5z"/></svg></span></button>
+        <div class="rp"><p>O disparo chega imediatamente à nossa central, que fica ativa 24 horas por dia. O operador verifica as imagens e liga para o responsável para confirmar a ocorrência. Se conseguirmos falar com você, seguimos o que você decidir. Se não conseguirmos, enviamos a unidade volante mesmo assim, porque não vale o risco de deixar passar.</p></div>
+      </div>
+      <div class="qa">
+        <button type="button">Preciso entender de tecnologia para usar?<span class="cr"><svg viewBox="0 0 24 24"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5z"/></svg></span></button>
+        <div class="rp"><p>Não. Nossa equipe instala, configura e treina você e quem mais for usar. No dia a dia, o aplicativo mostra as imagens ao vivo, permite recuperar gravações e armar ou desarmar o sistema. E o suporte funciona 24h para qualquer dúvida.</p></div>
+      </div>
+      <div class="qa">
+        <button type="button">Quanto tempo leva da contratação até estar funcionando?<span class="cr"><svg viewBox="0 0 24 24"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5z"/></svg></span></button>
+        <div class="rp"><p>O prazo depende do porte do projeto e é informado no orçamento, junto com a data de instalação. <!-- [CONFIRMAR] prazo médio de instalação por porte --></p></div>
+      </div>
+      <div class="qa">
+        <button type="button">Quem é a TEC?<span class="cr"><svg viewBox="0 0 24 24"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5z"/></svg></span></button>
+        <div class="rp"><p>A TEC Segurança Eletrônica atua no Espírito Santo desde 2010 e faz parte do Grupo Fibra, que opera no estado desde 1995 nas frentes de vigilância patrimonial, portaria, recepção e serviços. Na prática, isso significa que a tecnologia e a resposta humana estão na mesma casa, e não terceirizadas em empresas diferentes.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== CTA FINAL ====================== -->
+<section class="final">
+  <div class="blob-3"></div>
+  <div class="wrap txt-c">
+    <h2>A hora de resolver segurança <em>é antes</em></h2>
+    <p>Nenhum cliente nosso contratou monitoramento depois de um prejuízo e disse que se arrependeu de ter contratado. Vários disseram que se arrependeram de ter demorado.</p>
+    <div class="final-ctas">
+      <button class="btn btn-ciano" data-ir="#orcamento" data-origem="final">Montar meu orçamento</button>
+      <a class="btn btn-luz" href="#" data-zap data-origem="final_whatsapp">Falar agora no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== RODAPÉ ====================== -->
+<footer class="rodape">
+  <div class="wrap">
+    <div class="rod-grid">
+      <div>
+        <b>TEC Segurança Eletrônica</b>
+        <p style="line-height:1.7">
+          Monitoramento 24h, alarme, CFTV, controle de acesso e portaria remota para empresas,
+          condomínios e residências no Espírito Santo. Empresa do Grupo Fibra.
+        </p>
+      </div>
+      <div>
+        <b>Contato</b>
+        <ul>
+          <li><a href="tel:+552732131016">(27) 3213-1016</a></li>
+          <li><a href="tel:+5527999899937">(27) 99989-9937</a></li>
+          <li><a href="mailto:contato@tecseguranca.com">contato@tecseguranca.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <b>Onde estamos</b>
+        <ul>
+          <li>Rua Carmelia Maria de Souza, 94</li>
+          <li>Vitória &mdash; ES · CEP 29.070-060</li>
+          <li>Atendimento em todo o Espírito Santo</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rod-base">
+      <span>&copy; <span id="ano">2026</span> TEC Segurança Eletrônica · Grupo Fibra</span>
+      <span>Atendimento e monitoramento 24 horas, todos os dias</span>
+    </div>
+  </div>
+</footer>
+
+<!-- barra fixa mobile -->
+<div class="fixa" id="fixa">
+  <button class="btn btn-azul" data-ir="#orcamento" data-origem="barra_fixa">Pedir orçamento</button>
+  <a class="btn btn-zap" href="#" data-zap data-origem="barra_fixa_whatsapp">WhatsApp</a>
+</div>
+
+<script>
+document.documentElement.className += " js";
+(function(){
+  "use strict";
+
+  /* ==========================================================================
+     CFG — preencher antes de publicar
+     ========================================================================== */
+  var CFG = {
+    // Número de destino do WhatsApp, formato internacional só com dígitos.
+    // [CONFIRMAR] o site publica o (27) 99989-9937. Se o comercial da TEC atende
+    // em outro número, ou se existe número de API ligado ao CRM da TEC, é esse
+    // que precisa entrar aqui, senão o lead não é registrado no CRM.
+    whatsapp:  "5527999899937",
+
+    // Endpoint que recebe o lead (n8n ou webhook do CRM da TEC). Vazio = não envia.
+    webhook:   "",
+
+    /* ---- rastreamento ----------------------------------------------------
+       Modo padrão: tags diretas (gtag.js + fbq). Preencha os IDs abaixo.
+       Campo vazio simplesmente não carrega nada, sem quebrar a página.
+
+       Se preferir governar tudo por Google Tag Manager, preencha SÓ o campo
+       `gtm`: com ele preenchido as tags diretas são desligadas automaticamente
+       e os eventos seguem apenas pelo dataLayer, evitando contagem dobrada.
+       ---------------------------------------------------------------------- */
+    ga4:       "",   // G-XXXXXXXXXX
+    googleAds: "",   // AW-XXXXXXXXXX
+    convLead:  "",   // AW-XXXXXXXXXX/rótulo · conversão PRIMÁRIA (envio do formulário)
+    convZap:   "",   // AW-XXXXXXXXXX/rótulo · conversão SECUNDÁRIA (clique no WhatsApp)
+    metaPixel: "",   // pixel da conta act_3770003676586668 — [CONFIRMAR] ID do pixel
+    gtm:       ""    // GTM-XXXXXXX — se preenchido, desliga as tags diretas
+  };
+
+  /* ---------------------- utilitários ---------------------- */
+  function $(s,c){ return (c||document).querySelector(s); }
+  function $$(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); }
+  function param(n){
+    var m = new RegExp("[?&]"+n+"=([^&]*)").exec(window.location.search);
+    return m ? decodeURIComponent(m[1].replace(/\+/g," ")) : "";
+  }
+  function vale(v){ return !!v && v.indexOf("XXX") === -1; }
+
+  /* ==========================================================================
+     RASTREAMENTO
+     O dataLayer é sempre alimentado, com GTM ou sem. As tags diretas só entram
+     quando não há container de GTM configurado, para nunca contar duas vezes.
+     ========================================================================== */
+  var TEM_GTM    = vale(CFG.gtm);
+  var TEM_GOOGLE = !TEM_GTM && (vale(CFG.ga4) || vale(CFG.googleAds));
+  var TEM_META   = !TEM_GTM && vale(CFG.metaPixel);
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ window.dataLayer.push(arguments); }
+
+  (function carregarTags(){
+    function script(src){ var s=document.createElement("script"); s.async=true; s.src=src; document.head.appendChild(s); }
+
+    if (TEM_GTM) {
+      window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+      script("https://www.googletagmanager.com/gtm.js?id=" + CFG.gtm);
+      return;
+    }
+
+    if (TEM_GOOGLE) {
+      script("https://www.googletagmanager.com/gtag/js?id=" + (vale(CFG.ga4) ? CFG.ga4 : CFG.googleAds));
+      gtag("js", new Date());
+      if (vale(CFG.ga4))       gtag("config", CFG.ga4);
+      // allow_enhanced_conversions habilita o envio do telefone com hash no lead
+      if (vale(CFG.googleAds)) gtag("config", CFG.googleAds, { allow_enhanced_conversions: true });
+    }
+
+    if (TEM_META) {
+      /* eslint-disable */
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      /* eslint-enable */
+      window.fbq("init", CFG.metaPixel);
+      window.fbq("track", "PageView");
+    }
+  })();
+
+  /* Um único ponto de saída: dataLayer sempre, Google e Meta quando diretos. */
+  function push(ev, dados){
+    dados = dados || {};
+    var o = { event: ev };
+    for (var k in dados) { if (Object.prototype.hasOwnProperty.call(dados,k)) o[k] = dados[k]; }
+    window.dataLayer.push(o);
+
+    if (ev === "lead_form_submit") {
+      if (TEM_GOOGLE) {
+        // Enhanced Conversions: o Google faz o hash do telefone no navegador
+        if (dados.telefone_e164) gtag("set", "user_data", { phone_number: dados.telefone_e164 });
+        if (vale(CFG.ga4)) gtag("event", "generate_lead", {
+          currency:"BRL", perfil: dados.perfil, situacao: dados.situacao, cidade: dados.cidade
+        });
+        if (vale(CFG.convLead)) gtag("event", "conversion", { send_to: CFG.convLead, currency:"BRL" });
+      }
+      if (TEM_META) window.fbq("track", "Lead", { content_name: dados.perfil, content_category: dados.situacao });
+    }
+
+    if (ev === "whatsapp_click") {
+      if (TEM_GOOGLE) {
+        if (vale(CFG.ga4))     gtag("event", "whatsapp_click", { origem_botao: dados.origem_botao });
+        if (vale(CFG.convZap)) gtag("event", "conversion", { send_to: CFG.convZap });
+      }
+      if (TEM_META) window.fbq("trackCustom", "WhatsAppClick", { origem_botao: dados.origem_botao });
+    }
+  }
+
+  /* origem do clique de anúncio, usada na mensagem e na importação offline */
+  var RASTREIO = {
+    gclid: param("gclid"),
+    utm_source: param("utm_source"),
+    utm_campaign: param("utm_campaign"),
+    utm_term: param("utm_term")
+  };
+
+  /* ==========================================================================
+     Estado do formulário
+     ========================================================================== */
+  var estado = { passo:1, perfil:"", situacao:"", interesse:"", nome:"", fone:"", cidade:"" };
+
+  function marcar(grupo, alvo){
+    $$(".op", grupo).forEach(function(b){ b.classList.toggle("sel", b === alvo); });
+  }
+
+  function irPara(n){
+    estado.passo = n;
+    $$(".passo").forEach(function(p){ p.classList.remove("on"); });
+    $("#p"+n).classList.add("on");
+    $$("#trilha .t").forEach(function(t,i){
+      t.classList.toggle("on", i === n-1);
+      t.classList.toggle("ok", i < n-1);
+    });
+    push("form_etapa", { etapa:n, perfil:estado.perfil, situacao:estado.situacao });
+    var topo = $("#sim").getBoundingClientRect().top + window.scrollY - 90;
+    window.scrollTo({ top: topo, behavior:"smooth" });
+  }
+
+  /* passo 1 */
+  $$("#opPerfil .op").forEach(function(b){
+    b.addEventListener("click", function(){
+      estado.perfil = b.getAttribute("data-valor");
+      marcar($("#opPerfil"), b);
+      $("#erro1").classList.remove("on");
+      $("#btnP1").disabled = false;
+    });
+  });
+  $("#btnP1").addEventListener("click", function(){
+    if (!estado.perfil) { $("#erro1").classList.add("on"); return; }
+    irPara(2);
+  });
+
+  /* passo 2 */
+  $$("#opSituacao .op").forEach(function(b){
+    b.addEventListener("click", function(){
+      estado.situacao = b.getAttribute("data-valor");
+      marcar($("#opSituacao"), b);
+      $("#erro2").classList.remove("on");
+      $("#btnP2").disabled = false;
+    });
+  });
+  $$("#opInteresse .op").forEach(function(b){
+    b.addEventListener("click", function(){
+      estado.interesse = b.getAttribute("data-valor");
+      marcar($("#opInteresse"), b);
+    });
+  });
+  $("#btnP2").addEventListener("click", function(){
+    if (!estado.situacao) { $("#erro2").classList.add("on"); return; }
+    irPara(3);
+  });
+
+  $$("[data-voltar]").forEach(function(b){
+    b.addEventListener("click", function(){ irPara(parseInt(b.getAttribute("data-voltar"),10)); });
+  });
+
+  /* máscara de telefone */
+  $("#inFone").addEventListener("input", function(e){
+    var v = e.target.value.replace(/\D/g,"").slice(0,11);
+    if (v.length > 6)      v = "(" + v.slice(0,2) + ") " + v.slice(2,7) + "-" + v.slice(7);
+    else if (v.length > 2) v = "(" + v.slice(0,2) + ") " + v.slice(2);
+    else if (v.length > 0) v = "(" + v;
+    e.target.value = v;
+  });
+  $("#inCidade").addEventListener("keydown", function(e){ if (e.key === "Enter") $("#btnEnviar").click(); });
+
+  /* ---------------------- mensagem do WhatsApp ---------------------- */
+  function mensagem(){
+    var l = [];
+    if (estado.nome) {
+      l.push("Olá! Vim pelo site e montei meu orçamento de segurança eletrônica.");
+      l.push("");
+      l.push("Nome: " + estado.nome);
+      if (estado.perfil)    l.push("Espaço: " + estado.perfil);
+      if (estado.cidade)    l.push("Cidade: " + estado.cidade);
+      if (estado.situacao)  l.push("Situação hoje: " + estado.situacao);
+      if (estado.interesse) l.push("Interesse: " + estado.interesse);
+      l.push("");
+      l.push("Gostaria de agendar a visita técnica.");
+    } else if (estado.perfil) {
+      l.push("Olá! Vim pelo site e quero um orçamento de segurança eletrônica para " + estado.perfil.toLowerCase() + ".");
+    } else {
+      l.push("Olá! Vim pelo site e quero falar sobre monitoramento e segurança eletrônica.");
+    }
+    if (RASTREIO.gclid) { l.push(""); l.push("ref: " + RASTREIO.gclid.slice(0,24)); }
+    return l.join("\n");
+  }
+
+  function urlZap(){
+    return "https://wa.me/" + CFG.whatsapp + "?text=" + encodeURIComponent(mensagem());
+  }
+
+  /* delegação: cobre os botões de WhatsApp de toda a página */
+  document.addEventListener("click", function(e){
+    var alvo = e.target.closest ? e.target.closest("[data-zap]") : null;
+    if (!alvo) return;
+    e.preventDefault();
+    push("whatsapp_click", {
+      origem_botao: alvo.getAttribute("data-origem") || "indefinido",
+      tem_lead: !!estado.nome,
+      perfil: estado.perfil,
+      gclid: RASTREIO.gclid
+    });
+    window.open(urlZap(), "_blank", "noopener");
+  });
+
+  /* âncoras que levam ao formulário */
+  document.addEventListener("click", function(e){
+    var alvo = e.target.closest ? e.target.closest("[data-ir]") : null;
+    if (!alvo) return;
+    e.preventDefault();
+    push("cta_click", { origem_botao: alvo.getAttribute("data-origem") || "indefinido" });
+    var el = $(alvo.getAttribute("data-ir"));
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 70, behavior:"smooth" });
+  });
+
+  /* ---------------------- envio ----------------------
+     O clique abre o WhatsApp na MESMA interação do usuário, senão o bloqueador
+     de pop-up do navegador mobile cancela a abertura. Só depois disso a página
+     dispara a conversão, manda o webhook e monta o resumo.
+     ---------------------------------------------------- */
+  $("#btnEnviar").addEventListener("click", function(){
+    var nome   = $("#inNome").value.trim();
+    var fone   = $("#inFone").value.replace(/\D/g,"");
+    var cidade = $("#inCidade").value.trim();
+    if (nome.length < 2 || fone.length < 10 || cidade.length < 2) { $("#erro3").classList.add("on"); return; }
+    $("#erro3").classList.remove("on");
+
+    estado.nome = nome; estado.fone = fone; estado.cidade = cidade;
+
+    // 1. abre o WhatsApp ainda dentro do gesto do usuário
+    window.open(urlZap(), "_blank", "noopener");
+
+    // 2. conversão primária do Google Ads
+    push("lead_form_submit", {
+      perfil: estado.perfil,
+      situacao: estado.situacao,
+      interesse: estado.interesse,
+      cidade: estado.cidade,
+      telefone_e164: "+55" + fone,   // usado só pelas conversões avançadas, com hash no navegador
+      gclid: RASTREIO.gclid
+    });
+
+    // 3. lead para o CRM, mesmo que a pessoa não chegue a enviar a mensagem
+    enviarWebhook();
+
+    // 4. resumo fica na página, para quando a pessoa voltar do WhatsApp
+    $("#resPerfil").textContent    = estado.perfil || "—";
+    $("#resSituacao").textContent  = estado.situacao || "—";
+    $("#resInteresse").textContent = estado.interesse || "a definir na visita";
+    $("#resCidade").textContent    = estado.cidade || "—";
+    $("#resTitulo").textContent    = "Pronto, " + nome.split(" ")[0] + "!";
+    $$(".passo").forEach(function(p){ p.classList.remove("on"); });
+    $("#trilha").style.display = "none";
+    $("#resultado").classList.add("on");
+    $("#resultado").scrollIntoView({ behavior:"smooth", block:"center" });
+  });
+
+  function enviarWebhook(){
+    if (!CFG.webhook) return;
+    var payload = {
+      origem: "LP Monitoramento TEC",
+      nome: estado.nome,
+      // E.164 de propósito: o CRM guarda o telefone nesse formato e deduplica por ele.
+      telefone: "+55" + estado.fone,
+      cidade: estado.cidade,
+      perfil: estado.perfil,
+      situacao: estado.situacao,
+      // Campo ausente vai como "" e não como null: o mapeamento de webhook infere
+      // o tipo pelo payload de exemplo, e null deixa o campo sem tipo.
+      interesse: estado.interesse || "",
+      gclid: RASTREIO.gclid || "",
+      utm_source: RASTREIO.utm_source || "",
+      utm_campaign: RASTREIO.utm_campaign || "",
+      utm_term: RASTREIO.utm_term || "",
+      pagina: window.location.href,
+      enviado_em: new Date().toISOString()
+    };
+    try {
+      fetch(CFG.webhook, {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body: JSON.stringify(payload),
+        keepalive: true
+      })["catch"](function(){ /* falha no webhook não pode travar o atendimento */ });
+    } catch(e){}
+  }
+
+  /* ---------------------- FAQ ---------------------- */
+  $$(".qa button").forEach(function(b){
+    b.addEventListener("click", function(){
+      var qa = b.parentNode, rp = $(".rp", qa), aberto = qa.classList.contains("ab");
+      $$(".qa").forEach(function(o){ o.classList.remove("ab"); $(".rp",o).style.maxHeight = null; });
+      if (!aberto) {
+        qa.classList.add("ab");
+        rp.style.maxHeight = rp.scrollHeight + "px";
+        push("faq_open", { pergunta: b.textContent.trim().slice(0,60) });
+      }
+    });
+  });
+
+  /* ---------------------- revelação, topo e barra fixa ---------------------- */
+  function revelarTudo(){ $$(".rev").forEach(function(el){ el.classList.add("vis"); }); }
+
+  if ("IntersectionObserver" in window) {
+    var obs = new IntersectionObserver(function(entradas){
+      entradas.forEach(function(en){
+        if (en.isIntersecting) { en.target.classList.add("vis"); obs.unobserve(en.target); }
+      });
+    }, { rootMargin:"0px 0px -60px 0px", threshold:0 });
+    $$(".rev").forEach(function(el,i){
+      el.style.transitionDelay = (Math.min(i,4) * 70) + "ms";
+      obs.observe(el);
+    });
+    // rede de segurança: nada pode ficar invisível por falha do observer
+    setTimeout(revelarTudo, 2600);
+  } else {
+    revelarTudo();
+  }
+
+  document.body.classList.add("tem-fixa");
+  var topoEl = $("#topo"), fixa = $("#fixa"), form = $("#orcamento");
+  window.addEventListener("scroll", function(){
+    var y = window.scrollY;
+    topoEl.classList.toggle("desceu", y > 12);
+    var fim = form.offsetTop + form.offsetHeight;
+    fixa.classList.toggle("on", y > 560 && (y + window.innerHeight < form.offsetTop || y > fim));
+  }, { passive:true });
+
+  $("#ano").textContent = new Date().getFullYear();
+
+  push("lp_view", { gclid: RASTREIO.gclid, utm_campaign: RASTREIO.utm_campaign });
+
+})();
+</script>
+</body>
+</html>
